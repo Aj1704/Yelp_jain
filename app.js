@@ -1,5 +1,4 @@
 
-
 // const seedDB = require('./seeds');
 
 var express=require('express'),
@@ -14,22 +13,21 @@ var express=require('express'),
     Comment= require("./models/comment"),
     User=require("./models/user"),
     SeedDB= require("./seeds");
-
 //requiring routes
 var commentRoutes= require("./routes/comments"),
 campgroundRoutes= require("./routes/campgrounds"),
 indexRoutes = require("./routes/index");
     // console.log(DATABASEURL);
-    mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
-    console.log(process.env.DATABASEURL);
-    // mongoose.connect("mongodb+srv://Abhay1999:abhay@1999@yelpcamp.2nadd.mongodb.net/YelpCamp?retryWrites=true&w=majority",{
-        // useNewUrlParser: true,
-        // useCreateIndex: true
-    // }).then(()=>{
-    //     console.log("Connected to DB");
-    // }).catch(err=>{
-    //     console.log('ERROR:',err.message);
-    // });
+    // mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
+    // console.log(process.env.DATABASEURL);
+    mongoose.connect("mongodb+srv://Abhay1999:abhay@1999@yelpcamp.2nadd.mongodb.net/YelpCamp?retryWrites=true&w=majority",{
+        useNewUrlParser: true,
+        useCreateIndex: true
+    }).then(()=>{
+        console.log("Connected to DB");
+    }).catch(err=>{
+        console.log('ERROR:',err.message);
+    });
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -65,6 +63,7 @@ app.use(function(req,res,next){
 app.use("/",indexRoutes);
 app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
+
 
 
 app.listen(process.env.PORT || 5000, function() {
