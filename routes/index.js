@@ -31,7 +31,7 @@ router.post("/register",function(req,res){
     });
     
 
-    if(req.body.adminCode==='secretcode1999'){
+    if(req.body.adminCode==='abhay@1999'){
         newUser.isAdmin=true;
     }
     User.register(newUser,req.body.password,function(err,user){
